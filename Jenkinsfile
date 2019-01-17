@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'cnt7'
+    }
     //triggers {
         //pollSCM '* * * * *'
     //}
