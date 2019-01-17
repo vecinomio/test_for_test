@@ -22,6 +22,7 @@ pipeline {
         stage ('Tests') {
             steps {
                 echo 'Trying some tests'
+                //sh 'vagrant provision --provision-with'
             }
         }
         stage ('Deploy') {
