@@ -18,7 +18,6 @@ pipeline {
             }
                 steps {
                     echo 'Trying some tests on cnt7'
-                    //sh 'vagrant provision --provision-with'
                     sh 'echo $USER'
                     sh 'hostname'
                 }
@@ -28,7 +27,7 @@ pipeline {
                 label 'master'
             }
                 steps {
-                    echo 'Starting instance'
+                    echo 'Stoping instance'
                     sh 'gcloud compute instances stop cnt7 --zone=europe-west3-c'
                 }
         }
