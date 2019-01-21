@@ -1,29 +1,26 @@
 pipeline {
-    agent {
-        label 'cnt7'
-    }
-    //triggers {
-        //pollSCM '* * * * *'
-    //}
+    agent none
 
     stages {
-        //stage ('Checkout') {
-            //steps {
-                //echo 'Checkout....'
-                //checkout([$class: 'GitSCM', branches: [[name: '*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vecinomio/test_for_test.git']]])
-            //}
-        //}
 
-        stage ('Build') {
-            steps {
-                echo 'Building....'
+        stage ('Do on master jenkins') {
+            agent {
+                label 'master'
             }
+                steps {
+                    echo 'Testing on master'
+                    sh 'cd /home/makienko_ig && touch makienko.txt'
+                }
         }
-        stage ('Tests') {
-            steps {
-                echo 'Trying some tests'
-                //sh 'vagrant provision --provision-with'
+        stage ('Do on cnt7') {
+            agent {
+                label 'cnt7'
             }
+                steps {
+                    echo 'Trying some tests on cnt7'
+                    //sh 'vagrant provision --provision-with'
+                    sh 'cd /home/makienko_ig && touch bumblbee.txt'
+                }
         }
         stage ('Deploy') {
             steps {
