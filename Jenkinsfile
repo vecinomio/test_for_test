@@ -3,14 +3,13 @@ pipeline {
 
     stages {
 
-        stage ('Do on master jenkins') {
+        stage ('Start cnt7') {
             agent {
                 label 'master'
             }
                 steps {
-                    echo 'Testing on master'
-                    sh 'echo $USER'
-                    sh 'hostname'
+                    echo 'Starting instance'
+                    sh 'gcloud compute instances start cnt7 --zone=europe-west3-c'
                 }
         }
         stage ('Do on cnt7') {
@@ -24,10 +23,14 @@ pipeline {
                     sh 'hostname'
                 }
         }
-        stage ('Deploy') {
-            steps {
-                echo 'Deploy something'
+        stage ('Stop cnt7') {
+            agent {
+                label 'master'
             }
+                steps {
+                    echo 'Starting instance'
+                    sh 'gcloud compute instances stop cnt7 --zone=europe-west3-c'
+                }
         }
 
     }
