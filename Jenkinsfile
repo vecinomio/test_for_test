@@ -9,7 +9,8 @@ pipeline {
             }
                 steps {
                     echo 'Testing on master'
-                    sh 'cd /home/makienko_ig && touch makienko.txt'
+                    sh 'echo $USER'
+                    sh 'hostname'
                 }
         }
         stage ('Do on cnt7') {
@@ -19,7 +20,8 @@ pipeline {
                 steps {
                     echo 'Trying some tests on cnt7'
                     //sh 'vagrant provision --provision-with'
-                    sh 'cd /home/makienko_ig && touch bumblbee.txt'
+                    sh 'echo $USER'
+                    sh 'hostname'
                 }
         }
         stage ('Deploy') {
